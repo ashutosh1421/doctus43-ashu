@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:json-logger="http://www.mulesoft.org/schema/mule/json-logger" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/json-logger http://www.mulesoft.org/schema/mule/json-logger/current/mule-json-logger.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0e2e5911-c2f2-4398-bb96-b0e6f3bf9a6c" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<json-logger:config name="JSON_Logger_Config" doc:name="JSON Logger Config" doc:id="d32669a7-bb98-4895-9e0a-fbea8a5f49e9" environment="4.3" />
+	<flow name="test-2Flow" doc:id="742f9c1e-eb1b-4c36-ab2e-758c7ad702d0" >
+		<http:listener doc:name="Listener" doc:id="fcd56b72-ac74-4cee-ac27-bdba3bbcd19e" config-ref="HTTP_Listener_config" path="/test2"/>
+		<logger level="INFO" doc:name="Logger" doc:id="b8e47990-59cf-4332-b09c-ba55b60288ac" message='#["test2-logger"]'/>
+		<json-logger:logger doc:name="Logger" doc:id="8564c8e3-5caf-4c84-a235-196a0c8ec081" config-ref="JSON_Logger_Config" message="fggh"/>
+	</flow>
+</mule>
